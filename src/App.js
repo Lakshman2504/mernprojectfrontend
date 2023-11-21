@@ -1,25 +1,54 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import LoginPage from './components/loginpage';
+import QuestionForm from './components/QuestionForm';
+import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom'; 
+import LogoutSuccess from './components/LogoutSuccess';
+import {Component} from 'react';
+class App extends Component{
+  
 
-function App() {
+render() {
+  const headerStyle = {
+    fontSize: '20px',
+    color: '#fff',
+    
+  };
+
+  const buttonStyle = {
+    marginLeft: 'auto',
+    display: 'flex',
+    justifyContent: 'flex-end', // Adjusted to 'flex-end'
+    padding: '10px',
+    background: 'red',
+    maxWidth: '100%', // Limiting the maximum width to the screen width
+  };
+  
+
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+      <Router>
+        <header className="App-header" style={headerStyle}>
+          <h1>Welcome to Your Quiz App</h1>
+          <Link to="/logout-success" style={buttonStyle}>
+            Logout
+          </Link>
+        </header>
+        <main>
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/logout-success" element={<LogoutSuccess />} />
+          </Routes>
+        </main>
+      </Router>
+      
 
+    </div>
+    
+  );
+  
+}
+}
 export default App;
